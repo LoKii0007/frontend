@@ -42,7 +42,7 @@ export const metadata: Metadata = {
     "web application development",
     "startup mvp",
   ],
-  authors: [{ name: "Zero1 Studio", url: "https://zero1studio.com" }],
+  authors: [{ name: "Zero1 Studio", url: "https://zero1studio.lok1.dev" }],
   creator: "Zero1 Studio",
   publisher: "Zero1 Studio",
   formatDetection: {
@@ -50,7 +50,7 @@ export const metadata: Metadata = {
     address: false,
     telephone: false,
   },
-  metadataBase: new URL(process.env.NEXT_PUBLIC_SITE_URL || "https://zero1studio.com"),
+  metadataBase: new URL(process.env.NEXT_PUBLIC_SITE_URL || "https://zero1studio.lok1.dev"),
   alternates: {
     canonical: "/",
   },
@@ -99,12 +99,13 @@ export default function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  const websiteId = process.env.SILENT_PULSE_WEBSITE_ID;
   return (
     <html lang="en" className="scroll-smooth">
       <head>
         {/* Optional: add favicon, manifest, etc. */}
         <link rel="icon" href="/favicon.ico" />
-        <Script src="https://silentpulse.vercel.app/script.js" strategy="beforeInteractive" />
+        <Script src="https://silentpulse.vercel.app/script.js" data-website-id={websiteId} strategy="afterInteractive" />
       </head>
       <body className={`${plus_jakarta_sans.variable} ${syne.variable} font-sans antialiased`}>
         <div className="relative min-h-screen bg-background">

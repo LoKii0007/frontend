@@ -7,6 +7,7 @@ import Magnetic from "./Magnetic";
 import { useGSAP } from "@gsap/react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
+import Link from "next/link";
 gsap.registerPlugin(ScrollTrigger);
 
 export default function Navbar() {
@@ -73,14 +74,14 @@ export default function Navbar() {
 
         <div className="hidden md:flex items-center gap-8">
           <Magnetic>
-            <a
+            <Link
               href="https://calendly.com/lokeshyadv8177/30min"
               target="_blank"
               className="text-xs uppercase tracking-widest font-bold hover:text-accent transition-colors"
               data-hover="true"
             >
               Book a Call
-            </a>
+            </Link>
           </Magnetic>
           {/* <Magnetic>
                 <a href="#contact" className="px-6 py-3 border border-white/20 rounded-full text-xs uppercase tracking-widest hover:bg-accent hover:text-black hover:border-accent transition-all" data-hover="true">
@@ -116,7 +117,7 @@ export default function Navbar() {
                     animate={{ y: 0, opacity: 1 }}
                     transition={{ delay: i * 0.1 }}
                     onClick={() => setIsMenuOpen(false)}
-                    className="font-display text-4xl sm:text-6xl md:text-7xl font-bold text-transparent text-outline hover:text-white hover:text-outline-none transition-colors duration-500 text-center"
+                    className="font-display text-4xl sm:text-6xl md:text-7xl font-bold text-white transition-colors duration-500 text-center"
                     data-hover="true"
                   >
                     {link.name}
@@ -130,19 +131,19 @@ export default function Navbar() {
                     transition={{ delay: 0.5 }}
                     className="flex flex-col items-center gap-6 mt-8 w-full"
                 >
-                    <a
+                    <Link
                         href="https://calendly.com"
                         className="text-accent text-lg uppercase tracking-widest font-bold hover:text-white transition-colors"
                     >
                         Book a Call
-                    </a>
-                    <a 
+                    </Link>
+                    <Link 
                         href="#contact" 
                         onClick={() => setIsMenuOpen(false)}
                         className="w-full text-center px-8 py-4 border border-white/20 rounded-full text-sm uppercase tracking-widest hover:bg-accent hover:text-black hover:border-accent transition-all"
                     >
                         Start Project
-                    </a>
+                    </Link>
                 </motion.div> */}
             </div>
           </motion.div>

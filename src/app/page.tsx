@@ -36,7 +36,7 @@ export default function App() {
   return (
     <>
       {/* Main Content Wrapper */}
-      <main className="relative z-10 bg-background mb-[100vh]">
+      <main className="relative z-10 bg-background mb-[calc(100vh-80px)] md:mb-[calc(100vh-96px)]">
         <Hero />
         <Services />
         <Projects />
