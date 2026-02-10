@@ -36,25 +36,25 @@ export default function Navbar() {
   return (
     <>
       <nav className="fixed navbar top-0 left-0 right-0 z-50 px-6 py-6 md:px-12 md:py-8 flex justify-between items-center text-white backdrop-blur-md">
-        <a
-          href="#"
+        <Link
+          href="/"
           className="font-display font-bold text-2xl tracking-tighter hover:scale-105 transition-transform"
           data-hover="true"
         >
-          Z1.
-        </a>
+          Z1
+        </Link>
 
         <div className="hidden md:flex items-center gap-12">
           {navLinks.slice(0, 3).map((link) => (
             <Magnetic key={link.name}>
-              <a
+              <Link
                 href={link.href}
                 className="text-sm uppercase tracking-widest font-medium hover:text-accent transition-colors relative group"
                 data-hover="true"
               >
                 {link.name}
                 <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-accent transition-all duration-300 group-hover:w-full"></span>
-              </a>
+              </Link>
             </Magnetic>
           ))}
         </div>
