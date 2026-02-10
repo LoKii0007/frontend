@@ -3,14 +3,7 @@
 import { useState } from "react";
 import { useForm } from "react-hook-form";
 import { motion } from "framer-motion";
-import { createClient } from "@supabase/supabase-js";
 import { Loader2, CheckCircle2, AlertCircle } from "lucide-react";
-
-// Initialize Supabase client inside the component or import from lib
-// Assuming the user has set up the environment variables
-const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL || "";
-const supabaseAnonKey = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY || "";
-const supabase = createClient(supabaseUrl, supabaseAnonKey);
 
 type FormData = {
   name: string;
@@ -40,17 +33,19 @@ export default function LeadForm() {
     setErrorMessage("");
 
     try {
-      const { error } = await supabase.from("leads").insert([
-        {
-          name: data.name,
-          company: data.company,
-          email: data.email,
-          phone: data.phone,
-          project_details: data.projectDetails,
+      const response = await fetch("/api/leads", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
         },
-      ]);
+        body: JSON.stringify(data),
+      });
 
-      if (error) throw error;
+      const result = await response.json();
+
+      if (!response.ok || !result.success) {
+        throw new Error(result.error || "Something went wrong. Please try again.");
+      }
 
       setSubmitStatus("success");
       reset();

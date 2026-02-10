@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useCallback, useState } from "react";
+import React, { useCallback, useEffect, useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Menu, X } from "lucide-react";
 import Magnetic from "./Magnetic";
@@ -15,13 +15,23 @@ const navLinks = [
   { name: "Expertise", href: "services" },
   { name: "Selected Work", href: "projects" },
   { name: "Start Project", href: "pricing" },
-  { name: "Contact", href: "contact" },
 ];
 
 export default function Navbar() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const pathname = usePathname();
   const router = useRouter();
+
+  useEffect(() => {
+    if (isMenuOpen) {
+      document.body.style.overflow = "hidden";
+    } else {
+      document.body.style.overflow = "";
+    }
+    return () => {
+      document.body.style.overflow = "";
+    };
+  }, [isMenuOpen]);
 
   const handleLinkClick = useCallback((href: string) => {
     if (pathname !== "/") {
@@ -126,18 +136,17 @@ export default function Navbar() {
             <div className="flex flex-col items-center gap-8 w-full max-w-md">
               <div className="flex flex-col items-center gap-6">
                 {navLinks.map((link, i) => (
-                  <motion.a
+                  <motion.div
                     key={link.name}
-                    href={link.href}
                     initial={{ y: 50, opacity: 0 }}
                     animate={{ y: 0, opacity: 1 }}
                     transition={{ delay: i * 0.1 }}
-                    onClick={() => setIsMenuOpen(false)}
+                    onClick={() => { handleLinkClick(link.href); setIsMenuOpen(false) }}
                     className="font-display text-4xl sm:text-6xl md:text-7xl font-bold text-white transition-colors duration-500 text-center"
                     data-hover="true"
                   >
                     {link.name}
-                  </motion.a>
+                  </motion.div>
                 ))}
               </div>
 

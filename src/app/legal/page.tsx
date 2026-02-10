@@ -24,7 +24,7 @@ export default function LegalPage() {
               Legal
             </h1>
             <p className="text-white/60 text-sm font-light">
-              Terms of service &amp; legal notice · Last updated: {new Date().toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' })}
+              Terms of service &amp; legal notice · Last updated: {new Date().toLocaleDateString('en-US', { year: 'numeric', month: 'long' })}
             </p>
           </motion.header>
 
